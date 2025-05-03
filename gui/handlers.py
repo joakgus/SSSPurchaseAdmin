@@ -1,42 +1,25 @@
 from server.items import load_items, save_items
 from server.config import IMAGE_DIR
 import os, shutil
-from tkinter import simpledialog, filedialog, messagebox
+from tkinter import filedialog, messagebox, Toplevel, StringVar, Entry, Label, Button
 from datetime import datetime
+from .dialogs import ask_item_details
 
 def init_data():
     items = load_items()
     return {"items": items, "thumb_refs": []}
 
+
 def add_item(state):
     items = state["items"]
-    name = simpledialog.askstring("Ny vara", "Vad heter varan?")
-    if not name:
+    result = ask_item_details()
+    if not result:
         return
-
-    try:
-        price = float(simpledialog.askstring("Pris", f"Vad kostar '{name}'?"))
-    except:
-        messagebox.showerror("Fel", "Ange ett giltigt pris (t.ex. 12.50)")
-        return
-
-    stand = simpledialog.askstring("Stånd", "Vilket stånd tillhör varan?") or "Okänt"
-
-    image_file = ""
-    image_path = filedialog.askopenfilename(title="Välj bild", filetypes=[("Bildfiler", "*.png *.jpg *.jpeg")])
-    if image_path:
-        ext = os.path.splitext(image_path)[1]
-        image_file = f"{name}_{int(datetime.now().timestamp())}{ext}"
-        shutil.copy(image_path, os.path.join(IMAGE_DIR, image_file))
 
     item = {
-        "id": max([i["id"] for i in items], default=0) + 1,
-        "name": name,
-        "price": price,
-        "image": image_file,
-        "stand": stand
+        "id": max((i["id"] for i in items), default=0) + 1,
+        **result
     }
-
     items.append(item)
     save_items(items)
 
@@ -51,3 +34,14 @@ def delete_item(state, item_id):
             del items[i]
             save_items(items)
             break
+
+def edit_item(state, item_id):
+    items = state["items"]
+    item = next((i for i in items if i["id"] == item_id), None)
+    if not item:
+        return
+
+    updated = ask_item_details(item)
+    if updated:
+        item.update(updated)
+        save_items(items)

@@ -1,11 +1,27 @@
 import os
 from tkinter import *
+from tkinter import messagebox
 from PIL import Image, ImageTk
-from .handlers import add_item, delete_item
+from .handlers import add_item, delete_item, edit_item
 from .statistics import show_statistics
 from .plots import open_variable_plot
 from server.config import PRIMARY_COLOR, ACCENT_COLOR, BLACK, WHITE, IMAGE_DIR
+from .export_excel import export_to_excel
+import socket
+import tkinter.scrolledtext as scrolledtext
+import sys
+import io
 
+# Store everything printed
+_console_buffer = io.StringIO()
+
+class PersistentConsoleLogger(io.StringIO):
+    def write(self, s):
+        _console_buffer.write(s)
+        return super().write(s)
+
+# Redirect stdout and stderr early in the program
+sys.stdout = sys.stderr = PersistentConsoleLogger()
 
 def build_gui(root, container, state):
     selected_stand = StringVar()
@@ -19,23 +35,93 @@ def build_gui(root, container, state):
 
     state["dropdown"] = dropdown
 
-    Button(root, text="Lägg till vara", command=lambda: [
+    action_frame = Frame(root, bg=PRIMARY_COLOR)
+    action_frame.pack(pady=10)
+
+    Button(action_frame, text="Lägg till vara", command=lambda: [
         add_item(state),
         update_dropdown(dropdown, selected_stand, state),
         update_grid(container, selected_stand, state)
-    ], font=("Arial", 12, "bold"), fg=BLACK, bg=ACCENT_COLOR).pack(pady=5)
+    ], font=("Arial", 12, "bold"), fg=BLACK, bg=ACCENT_COLOR).pack(side=LEFT, padx=5)
 
-    Button(root, text="Visa statistik", command=show_statistics,
-           font=("Arial", 12, "bold"), fg=WHITE, bg=PRIMARY_COLOR).pack(pady=2)
+    Button(action_frame, text="Visa statistik", command=show_statistics,
+           font=("Arial", 12, "bold"), fg=WHITE, bg=PRIMARY_COLOR).pack(side=LEFT, padx=5)
 
-    Button(root, text="🧮 Anpassad graf", command=open_variable_plot,
-           font=("Arial", 12), fg=WHITE, bg=PRIMARY_COLOR).pack(pady=2)
+    Button(action_frame, text="🧮 Anpassad graf", command=open_variable_plot,
+           font=("Arial", 12), fg=WHITE, bg=PRIMARY_COLOR).pack(side=LEFT, padx=5)
+
+    Button(action_frame, text="📤 Skapa Excel-fil", command=export_to_excel,
+           font=("Arial", 12), fg=WHITE, bg=PRIMARY_COLOR).pack(side=LEFT, padx=5)
+
+    Button(action_frame, text="❓ Hjälp", command=show_shortcuts_help,
+           font=("Arial", 12), fg=WHITE, bg=PRIMARY_COLOR).pack(side=LEFT, padx=5)
 
     update_dropdown(dropdown, selected_stand, state)
     update_grid(container, selected_stand, state)
 
     # Redraw on resize
     container.bind("<Configure>", lambda event: update_grid(container, selected_stand, state))
+
+    # ⌨️ Keyboard Shortcuts
+    root.bind_all("<Control-a>", lambda e: [
+        add_item(state),
+        update_dropdown(dropdown, selected_stand, state),
+        update_grid(container, selected_stand, state)
+    ])
+    root.bind_all("<Control-s>", lambda e: show_statistics())
+    root.bind_all("<Control-g>", lambda e: open_variable_plot())
+    root.bind_all("<Control-p>", lambda e: export_to_excel())
+    root.bind_all("<Control-h>", lambda e: show_shortcuts_help())
+    root.bind_all("<Control-t>", lambda e: open_debug_console())
+    root.bind_all("<Control-c>", lambda e: root.quit())
+
+def open_debug_console():
+    console_win = Toplevel()
+    console_win.title("🛠️ Debug Console")
+    console_win.geometry("600x400")
+
+    output_box = scrolledtext.ScrolledText(console_win, wrap="word", bg="#111", fg="#FDD314", insertbackground="#FDD314")
+    output_box.pack(expand=True, fill="both")
+
+    # Insert previous output
+    output_box.insert("end", _console_buffer.getvalue())
+    output_box.see("end")
+
+    # Also live update from now on
+    class LiveLogger(io.StringIO):
+        def write(self, s):
+            output_box.insert("end", s)
+            output_box.see("end")
+            _console_buffer.write(s)
+            return super().write(s)
+
+    sys.stdout = sys.stderr = LiveLogger()
+    print("📢 Debug Console activated.")
+
+def get_local_ip():
+    try:
+        # This trick works on most LANs
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except:
+        return "Okänd"
+
+def show_shortcuts_help():
+    ip = get_local_ip()
+    help_text = (
+        f"Tangentbordsgenvägar:\n\n"
+        f"🆕  Ctrl + A – Lägg till vara\n"
+        f"📊  Ctrl + S – Visa statistik\n"
+        f"📈  Ctrl + G – Anpassad graf\n"
+        f"📤  Ctrl + P – Skapa Excel-fil\n"
+        f"❓  Ctrl + H – Visa hjälp\n\n"
+        f"📡 IP-adress för denna dator:\n  {ip}\n\n"
+        f"💡 Skriv in denna IP-adress i appen när du startar den för att ansluta:{ip}"
+    )
+    messagebox.showinfo("Hjälp – Genvägar & IP", help_text)
 
 
 def update_dropdown(dropdown, selected_stand, state):
@@ -91,10 +177,21 @@ def update_grid(container, selected_stand, state):
         Label(frame, text=f"{item['price']:.2f} kr", fg=PRIMARY_COLOR, bg=WHITE).pack()
         Label(frame, text=f"Stånd: {item.get('stand', 'Okänt')}", font=("Arial", 9), bg=WHITE, fg=BLACK).pack()
 
-        Button(frame, text="Ta bort", fg=WHITE, bg=PRIMARY_COLOR,
+        btn_frame = Frame(frame, bg=WHITE)
+        btn_frame.pack(pady=5)
+
+        Button(btn_frame, text="Ändra", fg=BLACK, bg=ACCENT_COLOR,
+               activebackground=BLACK, activeforeground=WHITE,
+               command=lambda i=item["id"]: [
+                   edit_item(state, i),
+                   update_dropdown(state["dropdown"], selected_stand, state),
+                   update_grid(container, selected_stand, state)
+               ]).pack(side=LEFT, padx=5)
+
+        Button(btn_frame, text="Ta bort", fg=WHITE, bg=PRIMARY_COLOR,
                activebackground=BLACK, activeforeground=ACCENT_COLOR,
                command=lambda i=item["id"]: [
                    delete_item(state, i),
                    update_dropdown(state["dropdown"], selected_stand, state),
                    update_grid(container, selected_stand, state)
-               ]).pack(pady=5)
+               ]).pack(side=LEFT, padx=5)

@@ -4,23 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e00b4b5-6e9b-4d85-9b92-dd5a37e088b9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/SSSPurchaseAdmin.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gui/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gui/components.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gui/handlers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gui/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gui/plots.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gui/statistics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/items.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/purchases.py" afterDir="false" />
+    <list default="true" id="0e00b4b5-6e9b-4d85-9b92-dd5a37e088b9" name="Changes" comment="First commit">
+      <change afterPath="$PROJECT_DIR$/app.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gui/dialogs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gui/export_excel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/components.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/components.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/handlers.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/handlers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +30,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "joakgus"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/joakgus/SSSPurchaseAdmin.git",
+    "accountId": "3fdb5293-a3b6-431f-99b8-8344240e97da"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -54,6 +58,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/joaki/PycharmProjects/SSSPurchaseAdmin",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -62,6 +67,16 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\joaki\PycharmProjects\SSSPurchaseAdmin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\joaki\PycharmProjects\SSSPurchaseAdmin\data\purchases" />
+      <recent name="C:\Users\joaki\PycharmProjects\SSSPurchaseAdmin\data\images" />
+      <recent name="C:\Users\joaki\PycharmProjects\SSSPurchaseAdmin\data" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="SSSPurchaseAdmin" type="Python.FlaskServer">
       <module name="SSSPurchaseAdmin" />
@@ -71,7 +86,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -97,12 +112,24 @@
       <option name="presentableId" value="Default" />
       <updated>1746277474070</updated>
       <workItem from="1746277474975" duration="7544000" />
-      <workItem from="1746289663423" duration="3015000" />
+      <workItem from="1746289663423" duration="14185000" />
     </task>
+    <task id="LOCAL−00001" summary="First commit">
+      <option name="closed" value="true" />
+      <created>1746292728427</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1746292728427</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SSSPurchaseAdmin$SSSPurchaseAdmin.coverage" NAME="SSSPurchaseAdmin Coverage Results" MODIFIED="1746278025658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
