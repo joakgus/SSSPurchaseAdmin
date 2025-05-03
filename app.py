@@ -1,9 +1,8 @@
-from flask import Flask
-app = Flask(__name__)
+from threading import Thread
+from server import create_app
+from gui.main import start_gui  # adjust if needed
 
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
-
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    app = create_app()
+    Thread(target=lambda: app.run(host="0.0.0.0", port=5000), daemon=True).start()
+    start_gui()
