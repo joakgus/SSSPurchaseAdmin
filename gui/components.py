@@ -35,32 +35,31 @@ def build_gui(root, container, state):
 
     state["dropdown"] = dropdown
 
-    action_frame = Frame(root, bg=PRIMARY_COLOR)
-    action_frame.pack(pady=10)
+    action_frame = state["action_frame"]
 
-    Button(action_frame, text="Lägg till vara", command=lambda: [
+    button_inner = Frame(action_frame, bg=PRIMARY_COLOR)
+    button_inner.pack()  # No side, so it's centered by default
+
+    Button(button_inner, text="Lägg till vara", command=lambda: [
         add_item(state),
         update_dropdown(dropdown, selected_stand, state),
         update_grid(container, selected_stand, state)
     ], font=("Arial", 12, "bold"), fg=BLACK, bg=ACCENT_COLOR).pack(side=LEFT, padx=5)
 
-    Button(action_frame, text="Visa statistik", command=show_statistics,
+    Button(button_inner, text="Visa statistik", command=show_statistics,
            font=("Arial", 12, "bold"), fg=WHITE, bg=PRIMARY_COLOR).pack(side=LEFT, padx=5)
 
-    Button(action_frame, text="🧮 Anpassad graf", command=open_variable_plot,
+    Button(button_inner, text="🧮 Anpassad graf", command=open_variable_plot,
            font=("Arial", 12), fg=WHITE, bg=PRIMARY_COLOR).pack(side=LEFT, padx=5)
 
-    Button(action_frame, text="📤 Skapa Excel-fil", command=export_to_excel,
+    Button(button_inner, text="📤 Skapa Excel-fil", command=export_to_excel,
            font=("Arial", 12), fg=WHITE, bg=PRIMARY_COLOR).pack(side=LEFT, padx=5)
 
-    Button(action_frame, text="❓ Hjälp", command=show_shortcuts_help,
+    Button(button_inner, text="❓ Hjälp", command=show_shortcuts_help,
            font=("Arial", 12), fg=WHITE, bg=PRIMARY_COLOR).pack(side=LEFT, padx=5)
 
     update_dropdown(dropdown, selected_stand, state)
     update_grid(container, selected_stand, state)
-
-    # Redraw on resize
-    container.bind("<Configure>", lambda event: update_grid(container, selected_stand, state))
 
     # ⌨️ Keyboard Shortcuts
     root.bind_all("<Control-a>", lambda e: [
