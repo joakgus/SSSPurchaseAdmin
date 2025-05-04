@@ -1,0 +1,42 @@
+[
+  {
+    "itemId": 8,
+    "name": "Våffla",
+    "stand": "F",
+    "price": 35.0,
+    "quantity": 2,
+    "timestamp": "2025-05-03T22:59:56.813Z"
+  },
+  {
+    "itemId": 18,
+    "name": "Läsk och vatten",
+    "stand": "F",
+    "price": 20.0,
+    "quantity": 1,
+    "timestamp": "2025-05-03T22:59:56.813Z"
+  },
+  {
+    "itemId": 31,
+    "name": "Cocosboll",
+    "stand": "F",
+    "price": 10.0,
+    "quantity": 1,
+    "timestamp": "2025-05-03T22:59:56.813Z"
+  },
+  {
+    "itemId": 30,
+    "name": "Brända mandlar",
+    "stand": "F",
+    "price": 30.0,
+    "quantity": 1,
+    "timestamp": "2025-05-03T22:59:56.813Z"
+  },
+  {
+    "itemId": 33,
+    "name": "Festis",
+    "stand": "F",
+    "price": 15.0,
+    "quantity": 1,
+    "timestamp": "2025-05-03T22:59:56.813Z"
+  }
+]

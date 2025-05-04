@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e00b4b5-6e9b-4d85-9b92-dd5a37e088b9" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/app.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gui/dialogs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gui/export_excel.py" afterDir="false" />
+    <list default="true" id="0e00b4b5-6e9b-4d85-9b92-dd5a37e088b9" name="Changes" comment="Prototype done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/components.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/components.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/handlers.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/handlers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/dialogs.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/dialogs.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,18 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "joakgus"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;joakgus&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/joakgus/SSSPurchaseAdmin.git",
-    "accountId": "3fdb5293-a3b6-431f-99b8-8344240e97da"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/joakgus/SSSPurchaseAdmin.git&quot;,
+    &quot;accountId&quot;: &quot;3fdb5293-a3b6-431f-99b8-8344240e97da&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -50,25 +44,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Flask server.SSSPurchaseAdmin.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/joaki/PycharmProjects/SSSPurchaseAdmin",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Flask server.SSSPurchaseAdmin.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/joaki/PycharmProjects/SSSPurchaseAdmin/data/images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\joaki\PycharmProjects\SSSPurchaseAdmin\data\images" />
+      <recent name="C:\Users\joaki\PycharmProjects\SSSPurchaseAdmin\data" />
       <recent name="C:\Users\joaki\PycharmProjects\SSSPurchaseAdmin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -112,7 +108,8 @@
       <option name="presentableId" value="Default" />
       <updated>1746277474070</updated>
       <workItem from="1746277474975" duration="7544000" />
-      <workItem from="1746289663423" duration="14185000" />
+      <workItem from="1746289663423" duration="19341000" />
+      <workItem from="1746358829604" duration="3675000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <option name="closed" value="true" />
@@ -121,7 +118,14 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1746292728427</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="Prototype done">
+      <option name="closed" value="true" />
+      <created>1746307860204</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1746307860204</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,7 +133,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="Prototype done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prototype done" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SSSPurchaseAdmin$SSSPurchaseAdmin.coverage" NAME="SSSPurchaseAdmin Coverage Results" MODIFIED="1746278025658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

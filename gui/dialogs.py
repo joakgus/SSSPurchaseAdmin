@@ -2,6 +2,7 @@ import os, shutil
 from tkinter import *
 from tkinter import filedialog, messagebox
 from server.config import IMAGE_DIR
+import time
 
 def ask_item_details(initial=None) -> dict | None:
     popup = Toplevel()
@@ -74,7 +75,7 @@ def ask_item_details(initial=None) -> dict | None:
         image_path = var_image.get()
         if image_path and os.path.exists(image_path) and os.path.dirname(image_path) != IMAGE_DIR:
             ext = os.path.splitext(image_path)[1]
-            filename = f"{name}_{int(Tk().tk.eval('clock seconds'))}{ext}"
+            filename = f"{name}_{int(time.time())}{ext}"
             dest = os.path.join(IMAGE_DIR, filename)
             shutil.copy(image_path, dest)
             result["image"] = filename
