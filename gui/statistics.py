@@ -18,10 +18,17 @@ def show_statistics():
         data = json.load(f)
 
     summary = defaultdict(lambda: {"quantity": 0, "revenue": 0.0})
+    total_quantity = 0
+    total_revenue = 0.0
+
     for p in data:
         key = f"{p['name']} ({p['stand']})"
-        summary[key]["quantity"] += p["quantity"]
-        summary[key]["revenue"] += p["quantity"] * p["price"]
+        qty = p["quantity"]
+        rev = qty * p["price"]
+        summary[key]["quantity"] += qty
+        summary[key]["revenue"] += rev
+        total_quantity += qty
+        total_revenue += rev
 
     popup = Toplevel()
     popup.title(f"Statistik för {today}")
@@ -36,4 +43,9 @@ def show_statistics():
         Label(popup, text=stats["quantity"], bg=WHITE, fg=BLACK).grid(row=idx, column=1)
         Label(popup, text=f"{stats['revenue']:.2f} kr", bg=WHITE, fg=BLACK).grid(row=idx, column=2)
 
-    Button(popup, text="Stäng", command=popup.destroy, bg=ACCENT_COLOR, fg=BLACK).grid(row=idx+1, column=0, columnspan=3, pady=10)
+    # Add total summary
+    Label(popup, text="Totalt för dagen:", font=("Arial", 10, "bold"), bg=WHITE, fg=BLACK).grid(row=idx+1, column=0, sticky=W, padx=10, pady=(10, 0))
+    Label(popup, text=total_quantity, font=("Arial", 10, "bold"), bg=WHITE, fg=BLACK).grid(row=idx+1, column=1, pady=(10, 0))
+    Label(popup, text=f"{total_revenue:.2f} kr", font=("Arial", 10, "bold"), bg=WHITE, fg=BLACK).grid(row=idx+1, column=2, pady=(10, 0))
+
+    Button(popup, text="Stäng", command=popup.destroy, bg=ACCENT_COLOR, fg=BLACK).grid(row=idx+2, column=0, columnspan=3, pady=10)
