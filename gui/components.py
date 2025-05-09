@@ -134,7 +134,7 @@ def update_dropdown(dropdown, selected_stand, state):
 
     menu.add_command(label="Alla stånd", command=lambda: select_and_update("Alla stånd"))
 
-    stands = sorted(set(item.get("stand", "Okänt") for item in items))
+    stands = sorted({stand for item in items for stand in item.get("stands", [])})
     for stand in stands:
         menu.add_command(label=stand, command=lambda s=stand: select_and_update(s))
 
@@ -146,7 +146,9 @@ def update_grid(container, selected_stand, state):
     state["thumb_refs"].clear()
 
     items = state["items"]
-    visible = items if selected_stand.get() == "Alla stånd" else [i for i in items if i.get("stand") == selected_stand.get()]
+    visible = items if selected_stand.get() == "Alla stånd" else [
+        i for i in items if selected_stand.get() in i.get("stands", [])
+    ]
 
     # Force geometry update to get accurate width
     container.update_idletasks()
@@ -174,7 +176,7 @@ def update_grid(container, selected_stand, state):
 
         Label(frame, text=item["name"], font=("Arial", 12, "bold"), bg=WHITE, fg=BLACK).pack()
         Label(frame, text=f"{item['price']:.2f} kr", fg=PRIMARY_COLOR, bg=WHITE).pack()
-        Label(frame, text=f"Stånd: {item.get('stand', 'Okänt')}", font=("Arial", 9), bg=WHITE, fg=BLACK).pack()
+        Label(frame, text=f"Stånd: {', '.join(item.get('stands', []))}", font=("Arial", 9), bg=WHITE, fg=BLACK).pack()
 
         btn_frame = Frame(frame, bg=WHITE)
         btn_frame.pack(pady=5)

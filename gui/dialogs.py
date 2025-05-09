@@ -15,13 +15,13 @@ def ask_item_details(initial=None) -> dict | None:
     result = {
         "name": "",
         "price": 0.0,
-        "stand": "",
+        "stands": "",
         "image": initial.get("image") if initial else ""
     }
 
     var_name = StringVar(value=initial.get("name") if initial else "")
     var_price = StringVar(value=str(initial.get("price")) if initial else "")
-    var_stand = StringVar(value=initial.get("stand") if initial else "")
+    var_stand = StringVar(value=",".join(initial.get("stands", [])) if initial else "")
     var_image = StringVar(value=result["image"])
 
     Label(popup, text="Namn").pack(anchor="w", padx=20, pady=(10, 0))
@@ -51,14 +51,14 @@ def ask_item_details(initial=None) -> dict | None:
     def submit():
         name = var_name.get().strip()
         price_text = var_price.get().strip()
-        stand = var_stand.get().strip()
+        stand_raw = var_stand.get().strip()
 
         if not name:
             messagebox.showerror("Fel", "Du måste ange ett namn.")
             return
 
-        if not stand:
-            messagebox.showerror("Fel", "Du måste ange ett stånd.")
+        if not stand_raw:
+            messagebox.showerror("Fel", "Du måste ange minst ett stånd.")
             return
 
         try:
@@ -67,9 +67,10 @@ def ask_item_details(initial=None) -> dict | None:
             messagebox.showerror("Fel", "Ange ett giltigt pris (t.ex. 12.50)")
             return
 
+        stands = [s.strip() for s in stand_raw.split(",") if s.strip()]
         result["name"] = name
         result["price"] = price
-        result["stand"] = stand
+        result["stands"] = stands
 
         # Copy image if needed
         image_path = var_image.get()
