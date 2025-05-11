@@ -10,7 +10,14 @@ def load_items():
     global _items_cache
     if os.path.exists(ITEMS_FILE):
         with open(ITEMS_FILE, "r", encoding="utf-8") as f:
-            _items_cache = json.load(f)
+            data = json.load(f)
+            # Normalize 'stand' to always be a list
+            for item in data:
+                if isinstance(item.get("stand"), str):
+                    item["stand"] = [item["stand"]]
+                elif not isinstance(item.get("stand"), list):
+                    item["stand"] = []
+            _items_cache = data
     else:
         _items_cache = []
 
@@ -34,5 +41,11 @@ def get_image(filename):
 
 @items_bp.route("/stands", methods=["GET"])
 def get_stands():
-    stands = sorted(set(i.get("stand", "Okänt") for i in _items_cache))
-    return jsonify(stands)
+    all_stands = set()
+    for item in _items_cache:
+        stands = item.get("stands", [])
+        if isinstance(stands, str):
+            all_stands.add(stands)
+        elif isinstance(stands, list):
+            all_stands.update(stands)
+    return jsonify(sorted(all_stands))

@@ -5,7 +5,8 @@
     "price": 25.0,
     "image": "Burkar med sockervadd_1746308833.jpg",
     "stands": [
-      "G"
+      "G",
+      "I"
     ]
   },
   {
@@ -36,41 +37,16 @@
     "name": "Kaffe&Te",
     "price": 20.0,
     "image": "kaffe_1746298506.JPG",
-    "stands": "F"
-  },
-  {
-    "id": 10,
-    "name": "Burkar med sockervadd",
-    "price": 20.0,
-    "image": "Burkar med sockervadd_1746308859.jpg",
-    "stands": "I"
+    "stands": [
+      "F",
+      "J"
+    ]
   },
   {
     "id": 11,
     "name": "Spritspåsar med popcorn",
     "price": 20.0,
     "image": "popcorn_1746299007.jpg",
-    "stands": "I"
-  },
-  {
-    "id": 12,
-    "name": "Läsk/Vatten",
-    "price": 15.0,
-    "image": "läsk_1746299052.jpg",
-    "stands": "I"
-  },
-  {
-    "id": 13,
-    "name": "Festis",
-    "price": 15.0,
-    "image": "festis_1746299141.jpg",
-    "stands": "I"
-  },
-  {
-    "id": 14,
-    "name": "Påsar med brända mandlar",
-    "price": 20.0,
-    "image": "brända mandlar_1746299517.jpg",
     "stands": "I"
   },
   {
@@ -91,7 +67,11 @@
     "id": 18,
     "name": "Läsk och vatten",
     "price": 20.0,
-    "stands": "F",
+    "stands": [
+      "F",
+      "I",
+      "J"
+    ],
     "image": "Läsk_1746309131.jpg"
   },
   {
@@ -126,70 +106,42 @@
     "id": 24,
     "name": "Småkakor i påse",
     "price": 30.0,
-    "stands": "J",
+    "stands": [
+      "J",
+      "F"
+    ],
     "image": "Småkakor i påse_1746310917.jpg"
   },
   {
     "id": 25,
     "name": "Brända mandlar",
     "price": 30.0,
-    "stands": "J",
+    "stands": [
+      "J",
+      "F",
+      "I"
+    ],
     "image": "Brända mandlar_1746310946.jpg"
   },
   {
     "id": 26,
     "name": "Cocosboll",
     "price": 10.0,
-    "stands": "J",
+    "stands": [
+      "J",
+      "F"
+    ],
     "image": "Cocosboll_1746310987.jpg"
-  },
-  {
-    "id": 27,
-    "name": "Kaffe&Te",
-    "price": 20.0,
-    "stands": "J",
-    "image": "Kaffe&Te_1746311210.jpg"
-  },
-  {
-    "id": 28,
-    "name": "Läsk och vatten",
-    "price": 20.0,
-    "stands": "J",
-    "image": "Läsk och vatten_1746311248.jpg"
   },
   {
     "id": 29,
     "name": "Festis",
     "price": 15.0,
-    "stands": "J",
+    "stands": [
+      "J",
+      "F",
+      "I"
+    ],
     "image": "Festis_1746311273.jpg"
-  },
-  {
-    "id": 30,
-    "name": "Brända mandlar",
-    "price": 30.0,
-    "stands": "F",
-    "image": "Brända mandlar_1746311708.jpg"
-  },
-  {
-    "id": 31,
-    "name": "Cocosboll",
-    "price": 10.0,
-    "stands": "F",
-    "image": "Cocosboll_1746311729.jpg"
-  },
-  {
-    "id": 32,
-    "name": "Småkakor i påse",
-    "price": 30.0,
-    "stands": "F",
-    "image": "Småkakor i påse_1746311758.jpg"
-  },
-  {
-    "id": 33,
-    "name": "Festis",
-    "price": 15.0,
-    "stands": "F",
-    "image": "Festis_1746311803.jpg"
   }
 ]
