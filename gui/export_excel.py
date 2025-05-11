@@ -1,42 +1,51 @@
 import os
 import json
 from datetime import datetime
-from tkinter import messagebox
+from tkinter import filedialog, messagebox
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 from server.config import PURCHASES_DIR
 
 def export_to_excel():
-    today = datetime.now().strftime("%Y-%m-%d")
-    file_path = os.path.join(PURCHASES_DIR, f"{today}.json")
+    file_paths = filedialog.askopenfilenames(
+        title="Välj en eller flera köp-filer",
+        filetypes=[("JSON-filer", "*.json")],
+        initialdir=PURCHASES_DIR
+    )
 
-    if not os.path.exists(file_path):
-        messagebox.showinfo("Ingen data", f"Inga köp hittades för {today}.")
+    if not file_paths:
         return
 
-    with open(file_path, "r", encoding="utf-8") as f:
-        purchases = json.load(f)
+    purchases = []
+    for path in file_paths:
+        with open(path, "r", encoding="utf-8") as f:
+            try:
+                data = json.load(f)
+                if isinstance(data, list):
+                    purchases.extend(data)
+            except Exception as e:
+                messagebox.showwarning("Fel", f"Kunde inte läsa {os.path.basename(path)}:\n{e}")
 
     if not purchases:
-        messagebox.showinfo("Tom fil", "Inga poster att exportera.")
+        messagebox.showinfo("Tom export", "Inga giltiga poster att exportera.")
         return
 
     # Create workbook and sheet
     wb = Workbook()
     ws = wb.active
-    ws.title = f"Köp {today}"
+    ws.title = "Köp export"
 
     headers = ["Vara", "Stånd", "Antal", "Pris (kr)", "Totalt (kr)", "Tidpunkt"]
     ws.append(headers)
 
     for p in purchases:
         row = [
-            p["name"],
-            p["stand"],
-            p["quantity"],
-            p["price"],
-            round(p["price"] * p["quantity"], 2),
-            p["timestamp"]
+            p.get("name", "Okänd"),
+            p.get("stand", "Okänt"),
+            p.get("quantity", 0),
+            p.get("price", 0.0),
+            round(p.get("price", 0.0) * p.get("quantity", 0), 2),
+            p.get("timestamp", "")
         ]
         ws.append(row)
 
@@ -47,7 +56,7 @@ def export_to_excel():
 
     # Save to Desktop
     desktop = os.path.join(os.path.expanduser("~"), "Desktop")
-    filename = os.path.join(desktop, f"Kop_{today}.xlsx")
+    filename = os.path.join(desktop, f"Kop_export_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx")
     wb.save(filename)
 
     messagebox.showinfo("Export klar", f"Excel-fil sparad på skrivbordet:\n{filename}")
